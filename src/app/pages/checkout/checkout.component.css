@@ -1,8 +1,51 @@
-.checkout-container { padding: 20px; max-width: 600px; margin: 0 auto; }
-.section { margin-bottom: 30px; border: 1px solid #eee; padding: 20px; border-radius: 8px; }
-form { display: flex; flex-direction: column; gap: 15px; }
-label { display: block; margin-bottom: 10px; }
-input, select { width: 100%; padding: 8px; margin-top: 5px; }
-button { padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-button:disabled { background: #ccc; }
-.success-message { text-align: center; padding: 50px; background: #d4edda; border-radius: 8px; }
+.checkout-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:disabled {
+    background: #ccc;
+}
+
+.success-message {
+    text-align: center;
+    padding: 50px;
+    background: #d4edda;
+    border-radius: 8px;
+}
