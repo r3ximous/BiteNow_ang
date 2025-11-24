@@ -6,21 +6,8 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-landing',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="landing-container">
-      <h1>Welcome to BiteNow</h1>
-      <p>Select your role to continue:</p>
-      <div class="role-selection">
-        <button (click)="loginCustomer()">Login as Customer</button>
-        <button (click)="loginRestaurant()">Login as Restaurant Owner</button>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .landing-container { text-align: center; padding: 50px; }
-    .role-selection { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-  `]
+  templateUrl: './landing.component.html',
+  styleUrl: './landing.component.css'
 })
 export class LandingComponent {
   constructor(private authService: AuthService) {}

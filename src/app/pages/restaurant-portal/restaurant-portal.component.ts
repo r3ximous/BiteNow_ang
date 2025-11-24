@@ -9,50 +9,8 @@ import { MenuItemOffering } from '../../models/domain.model';
   selector: 'app-restaurant-portal',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <div class="portal-container">
-      <header>
-        <h2>Restaurant Dashboard: {{ restaurantName() }}</h2>
-        <button (click)="logout()">Logout</button>
-      </header>
-
-      <div class="content">
-        <div class="offerings-list">
-          <h3>Current Menu Offerings</h3>
-          <ul>
-            <li *ngFor="let item of offerings()">
-              <span>{{ item.name }} - \${{ item.price }}</span>
-              <button (click)="editItem(item)">Edit</button>
-              <button (click)="deleteItem(item.id)">Delete</button>
-            </li>
-          </ul>
-          <button (click)="addNewItem()">Add New Item</button>
-        </div>
-
-        <div class="editor" *ngIf="editingItem()">
-          <h3>{{ isNewItem() ? 'Add New Item' : 'Edit Item' }}</h3>
-          <form (ngSubmit)="saveItem()">
-            <label>Name: <input [(ngModel)]="editingItem()!.name" name="name" required></label>
-            <label>Description: <input [(ngModel)]="editingItem()!.description" name="description"></label>
-            <label>Price: <input type="number" [(ngModel)]="editingItem()!.price" name="price" required></label>
-            <label>Available: <input type="checkbox" [(ngModel)]="editingItem()!.isAvailable" name="isAvailable"></label>
-            <button type="submit">Save</button>
-            <button type="button" (click)="cancelEdit()">Cancel</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .portal-container { padding: 20px; }
-    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; margin-bottom: 20px; }
-    .content { display: flex; gap: 40px; }
-    .offerings-list { flex: 1; }
-    .editor { flex: 1; border: 1px solid #eee; padding: 20px; }
-    ul { list-style: none; padding: 0; }
-    li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
-    form { display: flex; flex-direction: column; gap: 10px; }
-  `]
+  templateUrl: './restaurant-portal.component.html',
+  styleUrl: './restaurant-portal.component.css'
 })
 export class RestaurantPortalComponent implements OnInit {
   restaurantName = signal('');

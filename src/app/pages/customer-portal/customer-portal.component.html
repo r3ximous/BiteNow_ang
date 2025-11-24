@@ -1,0 +1,38 @@
+<div class="customer-container">
+  <header>
+    <h2>Welcome, {{ customerName() }}</h2>
+    <div class="actions">
+      <a routerLink="/cart">Cart ({{ cartCount() }}) - \${{ cartTotal() | number:'1.2-2' }}</a>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div *ngIf="!selectedRestaurant()">
+    <h3>Available Restaurants</h3>
+    <div class="restaurant-grid">
+      <div *ngFor="let r of restaurants()" class="restaurant-card" (click)="selectRestaurant(r)">
+        <h4>{{ r.name }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedRestaurant()">
+    <button (click)="clearSelection()">Back to Restaurants</button>
+    <h3>Menu: {{ selectedRestaurant()!.name }}</h3>
+    
+    <div class="search-bar">
+      <input type="text" placeholder="Search menu items..." [(ngModel)]="searchQuery" (input)="filterMenu()">
+    </div>
+
+    <div class="menu-grid">
+      <div *ngFor="let item of filteredMenu()" class="menu-item-card">
+        <h4>{{ item.name }}</h4>
+        <p>{{ item.description }}</p>
+        <div class="price-row">
+          <span>\${{ item.price }}</span>
+          <button (click)="addToCart(item)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
+import { Injectable, signal, computed, effect, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Basket, BasketLine, MenuItemOffering } from '../models/domain.model';
 
 @Injectable({
@@ -26,15 +27,19 @@ export class CartService {
     }, 0)
   );
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     // Effect to persist cart to local storage (mock persistence)
     effect(() => {
-      localStorage.setItem('bitenow_cart', JSON.stringify(this.basket()));
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('bitenow_cart', JSON.stringify(this.basket()));
+      }
     });
 
-    const savedCart = localStorage.getItem('bitenow_cart');
-    if (savedCart) {
-      this.basket.set(JSON.parse(savedCart));
+    if (isPlatformBrowser(this.platformId)) {
+      const savedCart = localStorage.getItem('bitenow_cart');
+      if (savedCart) {
+        this.basket.set(JSON.parse(savedCart));
+      }
     }
   }
 

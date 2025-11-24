@@ -1,0 +1,35 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+  
+  <div *ngIf="!orderPlaced()">
+    <div class="summary-preview">
+      <h3>Order Total: \${{ total() | number:'1.2-2' }}</h3>
+    </div>
+
+    <form (ngSubmit)="placeOrder()">
+      <div class="section">
+        <h3>Delivery Address</h3>
+        <label>Street: <input [(ngModel)]="address.street" name="street" required></label>
+        <label>City: <input [(ngModel)]="address.city" name="city" required></label>
+        <label>Zip: <input [(ngModel)]="address.zip" name="zip" required></label>
+      </div>
+
+      <div class="section">
+        <h3>Payment Method</h3>
+        <select [(ngModel)]="paymentMethod" name="payment">
+          <option value="credit_card">Credit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash">Cash on Delivery</option>
+        </select>
+      </div>
+
+      <button type="submit" [disabled]="total() === 0">Place Order</button>
+    </form>
+  </div>
+
+  <div *ngIf="orderPlaced()" class="success-message">
+    <h3>Order Placed Successfully!</h3>
+    <p>Thank you for your order.</p>
+    <button (click)="goHome()">Return Home</button>
+  </div>
+</div>

@@ -9,7 +9,7 @@
     "test": "ng test",
     "serve:ssr:BiteNow_ang": "node dist/BiteNow_ang/server/server.mjs",
     "dev": "concurrently \"npm run backend\" \"npm start\"",
-    "backend": "npm start --prefix backend"
+    "backend": "npm run start:dev --prefix backend"
   },
   "prettier": {
     "printWidth": 100,
